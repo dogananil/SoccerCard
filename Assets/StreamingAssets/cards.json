@@ -19,5 +19,33 @@
     "rating": 91,
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg",
     "addressableModel": "MbappeModel"
+  },
+  {
+    "id": "player004",
+    "name": "Zinedine Zidane",
+    "rating": 96,
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Zinedine_Zidane_by_Tasnim_03.jpg",
+    "addressableModel": "ZidaneModel"
+  },
+  {
+    "id": "player005",
+    "name": "Ronaldinho Gaucho",
+    "rating": 97,
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/92/Ronaldinho_Kazan.jpg",
+    "addressableModel": "RonaldinhoModel"
+  },
+  {
+    "id": "player006",
+    "name": "Franck Ribery",
+    "rating": 89,
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Franck_Rib%C3%A9ry_20120611.jpg",
+    "addressableModel": "RiberyModel"
+  },
+  {
+    "id": "player007",
+    "name": "Arda Guler",
+    "rating": 85,
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg",
+    "addressableModel": "ArdaModel"
   }
 ]

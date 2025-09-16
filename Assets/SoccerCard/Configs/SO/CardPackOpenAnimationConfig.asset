@@ -17,6 +17,6 @@ MonoBehaviour:
   flipSpeedup: 0.7
   explodeScale: 2.5
   explodeDuration: 0.3
-  shakeMagnitude: 20
+  shakeMagnitude: 30
   explodeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   fadeDuration: 0.2

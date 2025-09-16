@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,10 @@ public class CardPackOpenningView : View
 {
     [SerializeField] private Image cardPackImage;
     [SerializeField] private GridLayoutGroup cardListContainer;
+    [SerializeField] private Button nextButton;
     private List<CardView> cardViews = new();
     private CardPackOpenAnimationConfig animationConfig;
+    private List<PlayerCard> openedCards = new();
 
     public override void Show()
     {
@@ -115,16 +118,31 @@ public class CardPackOpenningView : View
         var cardViewPrefabGO = await loader.LoadAsset<GameObject>("CardView");
         var repository = ServiceLocator.Get<CardRepository>();
         foreach (Transform child in cardListContainer.transform)
-        {
             Destroy(child.gameObject);
-        }
-        foreach (var card in repository.Cards.Values)
+
+        var allCards = new List<PlayerCard>(repository.Cards.Values);
+        openedCards = allCards.OrderBy(x => Random.value).Take(5).ToList();
+
+        foreach (var card in openedCards)
         {
-            GameObject cardViewObj = Instantiate(cardViewPrefabGO, cardListContainer.gameObject.transform);
+            GameObject cardViewObj = Instantiate(cardViewPrefabGO, cardListContainer.transform);
             var cardView = cardViewObj.GetComponent<CardView>();
             cardViews.Add(cardView);
             var thumbnail = repository.GetThumbnail(card.id);
             cardView.Setup(card, thumbnail);
         }
+
+        nextButton.gameObject.SetActive(true);
+        nextButton.onClick.RemoveAllListeners();
+        nextButton.onClick.AddListener(OnNextClicked);
+    }
+
+    private void OnNextClicked()
+    {
+        nextButton.gameObject.SetActive(false);
+
+        var uiManager = ServiceLocator.Get<UIManager>();
+        uiManager.ShowViewAsync("SquadBuilderView").Forget();
+        Hide();
     }
 }
