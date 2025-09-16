@@ -15,7 +15,7 @@
   },
   {
     "id": "player003",
-    "name": "Kylian Mbappé",
+    "name": "Kylian Mbappe",
     "rating": 91,
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg",
     "addressableModel": "MbappeModel"
