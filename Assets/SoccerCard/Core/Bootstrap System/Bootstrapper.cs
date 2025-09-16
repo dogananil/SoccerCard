@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Threading;
+using System;
 
 public class Bootstrapper : MonoBehaviour
 {
@@ -9,10 +10,28 @@ public class Bootstrapper : MonoBehaviour
 
     private void Awake()
     {
-        // Example: Add systems to boot in order
-        bootItems.Add(new AddressableLoader());
-        // Add more boot items here as needed
+        AddBootItemToList(typeof(AddressableLoader));
+        AddBootItemToList(typeof(UIManager));
         StartBoot().Forget();
+    }
+
+    private void AddBootItemToList(Type bootItemType)
+    {
+        // Create IBootItem instance
+        var dummy = Activator.CreateInstance(bootItemType) as IBootItem;
+        if (dummy == null)
+            return;
+        if (dummy.RequiresGameObjectInstance)
+        {
+            var go = new GameObject(bootItemType.Name);
+            var comp = go.AddComponent(bootItemType) as IBootItem;
+            if (comp != null)
+                bootItems.Add(comp);
+        }
+        else
+        {
+            bootItems.Add(dummy);
+        }
     }
 
     private async UniTask StartBoot()
