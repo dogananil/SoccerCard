@@ -3,6 +3,7 @@ using System.Threading;
 
 public interface IBootItem
 {
-    UniTask Boot(CancellationToken ct);
     string DisplayName { get; }
+    bool RequiresGameObjectInstance { get; }
+    UniTask Boot(CancellationToken ct);
 }
