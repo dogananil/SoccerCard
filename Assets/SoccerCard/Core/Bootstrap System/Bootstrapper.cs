@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Threading;
 using System;
+using System.Reflection;
 
 public class Bootstrapper : MonoBehaviour
 {
@@ -34,6 +35,14 @@ public class Bootstrapper : MonoBehaviour
         }
     }
 
+    private void RegisterSystem(IBootItem item)
+    {
+        var type = item.GetType();
+        var method = typeof(ServiceLocator).GetMethod("Register");
+        var generic = method.MakeGenericMethod(type);
+        generic.Invoke(null, new object[] { item });
+    }
+
     private async UniTask StartBoot()
     {
         var ct = new CancellationToken();
@@ -41,7 +50,10 @@ public class Bootstrapper : MonoBehaviour
         {
             Debug.Log($"Booting: {item.DisplayName}");
             await item.Boot(ct);
+            RegisterSystem(item);
         }
+        var uiManager = ServiceLocator.Get<UIManager>();
+        uiManager.ShowViewAsync("MainMenuView").Forget();
     }
 }
 

@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour, IBootItem
     private readonly Dictionary<string, View> views = new();
     public async UniTask Boot(CancellationToken ct)
     {
-        App.UIManager = this;
+        ServiceLocator.Register(this);
         await UniTask.CompletedTask;
     }
 
@@ -21,7 +21,8 @@ public class UIManager : MonoBehaviour, IBootItem
             views[viewName].Show();
             return;
         }
-        var view = await App.AddressableLoader.LoadAsset<View>(viewName);
+        var loader = ServiceLocator.Get<AddressableLoader>();
+        var view = await loader.LoadAsset<View>(viewName);
         if (view != null)
         {
             views[viewName] = Instantiate(view, transform);
