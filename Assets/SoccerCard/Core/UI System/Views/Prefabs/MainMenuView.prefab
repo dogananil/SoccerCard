@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ViewName: MainMenuView
+  openPackButton: {fileID: 8167602392185520759}
+  playMatchButton: {fileID: 2929137976059678722}
 --- !u!1 &6097417261220847874
 GameObject:
   m_ObjectHideFlags: 0

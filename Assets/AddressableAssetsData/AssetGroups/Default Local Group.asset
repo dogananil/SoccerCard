@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: df79c56ff3da99c448557a7edaaeb9a0
   m_SerializeEntries:
+  - m_GUID: 27e830222882ca841a3e938b26a6f1c1
+    m_Address: CardView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61b2765ad4fe77042800e36c7535f5de
     m_Address: MainMenuView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fac863c8762b8764180d9bd26e9569d3
+    m_Address: CardPackOpenningView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -13,6 +13,7 @@ public class Bootstrapper : MonoBehaviour
     {
         AddBootItemToList(typeof(AddressableLoader));
         AddBootItemToList(typeof(UIManager));
+        AddBootItemToList(typeof(CardSystemController));
         StartBoot().Forget();
     }
 
