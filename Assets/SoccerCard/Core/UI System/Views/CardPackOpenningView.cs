@@ -122,6 +122,7 @@ public class CardPackOpenningView : View
 
         var allCards = new List<PlayerCard>(repository.Cards.Values);
         openedCards = allCards.OrderBy(x => Random.value).Take(5).ToList();
+        repository.OpenedCards = openedCards;
 
         foreach (var card in openedCards)
         {
