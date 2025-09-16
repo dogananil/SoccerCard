@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour, IBootItem
         if (view != null)
         {
             views[viewName] = Instantiate(view, transform);
-            view.Show();
+            views[viewName].Show();
         }
     }
     public void HideView(string viewName)

@@ -26,8 +26,6 @@ public class CardPackOpenningView : View
         {
             Destroy(child.gameObject);
         }
-        Debug.LogError($"card list container transform {cardListContainer.transform.position.x}");
-        Debug.LogError($"cardListContainer scene: {cardListContainer.gameObject.name}");
         foreach (var card in repository.Cards.Values)
         {
             GameObject cardViewObj = Instantiate(cardViewPrefabGO, cardListContainer.gameObject.transform);
