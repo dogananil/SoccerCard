@@ -12,10 +12,12 @@ public class SquadBuilderView : View
     public Transform CardPackParent=> openedCardsContainer.transform;
     [SerializeField] private int squadSlotCount = 3;
     private List<SquadSlotView> squadSlots = new();
+    [SerializeField] private Button playMatchButton;
 
     public override void Show()
     {
         base.Show();
+        playMatchButton.gameObject.SetActive(false);
         LoadOpenedCards().Forget();
         ShowSquadSlots();
     }
@@ -50,5 +52,11 @@ public class SquadBuilderView : View
             var thumbnail = cardRepository.GetThumbnail(card.id);
             cardView.Setup(card, thumbnail,true);
         }
+    }
+
+    public void OnSlotChanged()
+    {
+        bool allFilled = squadSlots.TrueForAll(slot => !slot.IsEmpty);
+        playMatchButton.gameObject.SetActive(allFilled);
     }
 }

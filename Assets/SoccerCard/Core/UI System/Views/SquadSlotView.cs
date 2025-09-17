@@ -8,7 +8,14 @@ public class SquadSlotView : MonoBehaviour
     public bool IsEmpty { get; private set; } = true;
     private CardView assignedCard;
     [SerializeField] private Image highlightImage;
-
+    private UIManager uiManager;
+    private SquadBuilderView squadBuilderView;
+    private void Awake()
+    {
+        uiManager= ServiceLocator.Get<UIManager>();
+        uiManager.GetView("SquadBuilderView", out var view);
+        squadBuilderView = view as SquadBuilderView;
+    }
     public void OnDrop(PointerEventData eventData)
     {
         if (!IsEmpty)
@@ -24,7 +31,6 @@ public class SquadSlotView : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        Debug.LogError($"Pointer Entered Slot {IsEmpty}");
         if (IsEmpty)
             SetHighlight(true);
     }
@@ -42,6 +48,8 @@ public class SquadSlotView : MonoBehaviour
         cardView.transform.localPosition = Vector3.zero;
         cardView.transform.localScale = Vector3.one;
         SetHighlight(false);
+        
+        squadBuilderView.OnSlotChanged();
     }
 
     public void RemoveCard()
@@ -49,6 +57,7 @@ public class SquadSlotView : MonoBehaviour
         assignedCard = null;
         IsEmpty = true;
         SetHighlight(false);
+        squadBuilderView.OnSlotChanged();
     }
 
     private void SetHighlight(bool active)
