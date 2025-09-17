@@ -8,6 +8,8 @@ public class SquadBuilderView : View
 {
     [SerializeField] private GridLayoutGroup openedCardsContainer;
     [SerializeField] private GridLayoutGroup squadSlotsContainer;
+    public Transform SlotParent=> squadSlotsContainer.transform;
+    public Transform CardPackParent=> openedCardsContainer.transform;
     [SerializeField] private int squadSlotCount = 3;
     private List<SquadSlotView> squadSlots = new();
 

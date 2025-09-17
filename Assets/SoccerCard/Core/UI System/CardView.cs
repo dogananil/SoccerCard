@@ -15,6 +15,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Transform originalParent;
     private Vector3 originalPosition;
 
+    private SquadSlotView currentSlot;
+
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -35,12 +37,17 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!isDraggingAvailable) return;
-        originalParent = transform.parent;
-        originalPosition = transform.localPosition;
-        canvasGroup.blocksRaycasts = false;
-
+        if (currentSlot != null)
+        {
+            currentSlot.RemoveCard();
+            currentSlot = null;
+        }
         var uIManager = ServiceLocator.Get<UIManager>();
         uIManager.GetView("SquadBuilderView", out var view);
+
+        originalParent = (view as SquadBuilderView).CardPackParent;
+        originalPosition = transform.localPosition;
+        canvasGroup.blocksRaycasts = false;
         transform.SetParent(view.transform); 
     }
 
@@ -62,6 +69,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             transform.SetParent(slot.transform);
             transform.localPosition = Vector3.zero;
             slot.AssignCard(this);
+            currentSlot = slot;
         }
         else
         {
