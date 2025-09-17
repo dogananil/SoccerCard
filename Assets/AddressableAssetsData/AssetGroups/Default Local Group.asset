@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9867911552d42004c8a87c0376e57eb7
+    m_Address: MatchResultView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da0cde740f85f3043b976c6d11f8082d
     m_Address: SquadSlotView
     m_ReadOnly: 0

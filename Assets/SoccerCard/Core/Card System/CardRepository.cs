@@ -7,6 +7,7 @@ public class CardRepository
     private readonly Dictionary<string, PlayerCard> cards = new();
     private readonly Dictionary<string, Sprite> thumbnails = new();
     public List<PlayerCard> OpenedCards { get; set; } = new();
+    public List<PlayerCard> SelectedSquadCards { get; set; } = new();
 
     public IReadOnlyDictionary<string, PlayerCard> Cards => cards;
     public IReadOnlyDictionary<string, Sprite> Thumbnails => thumbnails;

@@ -7,6 +7,7 @@ public class SquadSlotView : MonoBehaviour
 {
     public bool IsEmpty { get; private set; } = true;
     private CardView assignedCard;
+    public CardView AssignedCard => assignedCard;
     [SerializeField] private Image highlightImage;
     private UIManager uiManager;
     private SquadBuilderView squadBuilderView;

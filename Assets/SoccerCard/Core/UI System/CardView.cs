@@ -16,7 +16,8 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector3 originalPosition;
 
     private SquadSlotView currentSlot;
-
+    private PlayerCard playerCard;
+    public PlayerCard GetPlayerCard() => playerCard;
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -32,6 +33,7 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         ratingText.text = card.rating.ToString();
         thumbnailImage.sprite = thumbnail;
         isDraggingAvailable = isDragAvailable;
+        playerCard= card;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

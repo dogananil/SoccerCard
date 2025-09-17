@@ -8,8 +8,8 @@ public class SquadBuilderView : View
 {
     [SerializeField] private GridLayoutGroup openedCardsContainer;
     [SerializeField] private GridLayoutGroup squadSlotsContainer;
-    public Transform SlotParent=> squadSlotsContainer.transform;
-    public Transform CardPackParent=> openedCardsContainer.transform;
+    public Transform SlotParent => squadSlotsContainer.transform;
+    public Transform CardPackParent => openedCardsContainer.transform;
     [SerializeField] private int squadSlotCount = 3;
     private List<SquadSlotView> squadSlots = new();
     [SerializeField] private Button playMatchButton;
@@ -18,8 +18,10 @@ public class SquadBuilderView : View
     {
         base.Show();
         playMatchButton.gameObject.SetActive(false);
+        playMatchButton.onClick.RemoveAllListeners();
+        playMatchButton.onClick.AddListener(OnPlayMatchClicked);
         LoadOpenedCards().Forget();
-        ShowSquadSlots();
+        ShowSquadSlots().Forget();
     }
 
     private async UniTask ShowSquadSlots()
@@ -50,7 +52,7 @@ public class SquadBuilderView : View
         {
             var cardView = Instantiate(cardViewPrefab, openedCardsContainer.transform);
             var thumbnail = cardRepository.GetThumbnail(card.id);
-            cardView.Setup(card, thumbnail,true);
+            cardView.Setup(card, thumbnail, true);
         }
     }
 
@@ -58,5 +60,23 @@ public class SquadBuilderView : View
     {
         bool allFilled = squadSlots.TrueForAll(slot => !slot.IsEmpty);
         playMatchButton.gameObject.SetActive(allFilled);
+    }
+
+    public void OnPlayMatchClicked()
+    {
+        var cardRepository = ServiceLocator.Get<CardRepository>();
+        var selectedCards = new List<PlayerCard>();
+        foreach (var slot in squadSlots)
+        {
+            if (!slot.IsEmpty && slot.AssignedCard != null)
+            {
+                selectedCards.Add(slot.AssignedCard.GetPlayerCard());
+            }
+        }
+        cardRepository.SelectedSquadCards = selectedCards;
+
+        var uiManager = ServiceLocator.Get<UIManager>();
+        uiManager.ShowViewAsync("MatchResultView").Forget();
+        Hide();
     }
 }

@@ -23,5 +23,6 @@ public class MainMenuView : View
     {
         var uiManager = ServiceLocator.Get<UIManager>();
         uiManager.ShowViewAsync("CardPackOpenningView").Forget();
+        Hide();
     }
 }
