@@ -24,6 +24,7 @@ public class SquadSlotView : MonoBehaviour
 
     public void OnPointerEnter()
     {
+        Debug.LogError($"Pointer Entered Slot {IsEmpty}");
         if (IsEmpty)
             SetHighlight(true);
     }
