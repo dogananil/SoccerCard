@@ -6,17 +6,10 @@ using UnityEngine.UI;
 public class MainMenuView : View
 {
     [SerializeField] Button openPackButton;
-    [SerializeField] Button playMatchButton;
 
     private void Awake()
     {
         openPackButton.onClick.AddListener(OnOpenPackClicked);
-        playMatchButton.onClick.AddListener(OnPlayMatchClicked);
-    }
-
-    private void OnPlayMatchClicked()
-    {
-        throw new NotImplementedException();
     }
 
     private void OnOpenPackClicked()

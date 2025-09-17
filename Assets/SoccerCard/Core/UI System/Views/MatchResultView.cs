@@ -23,6 +23,7 @@ public class MatchResultView : View
     public override void Show()
     {
         base.Show();
+        GetComponent<Canvas>().worldCamera = Camera.main;
         playAgainButton.onClick.RemoveAllListeners();
         playAgainButton.onClick.AddListener(OnPlayAgainClicked); 
         CalculateResult().Forget();
