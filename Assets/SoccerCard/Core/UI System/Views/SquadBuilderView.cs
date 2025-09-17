@@ -46,7 +46,7 @@ public class SquadBuilderView : View
         {
             var cardView = Instantiate(cardViewPrefab, openedCardsContainer.transform);
             var thumbnail = cardRepository.GetThumbnail(card.id);
-            cardView.Setup(card, thumbnail);
+            cardView.Setup(card, thumbnail,true);
         }
     }
 }

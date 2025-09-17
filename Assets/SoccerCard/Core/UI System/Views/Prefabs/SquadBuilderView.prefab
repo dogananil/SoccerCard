@@ -201,6 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ViewName: SquadBuilderView
   openedCardsContainer: {fileID: 7223241057968764488}
+  squadSlotsContainer: {fileID: 1552101794095880787}
+  squadSlotCount: 3
 --- !u!1 &5093659768590579021
 GameObject:
   m_ObjectHideFlags: 0

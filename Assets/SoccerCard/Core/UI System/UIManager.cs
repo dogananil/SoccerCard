@@ -36,4 +36,8 @@ public class UIManager : MonoBehaviour, IBootItem
             views[viewName].Hide();
         }
     }
+    public void GetView(string viewName, out View view)
+    {
+        views.TryGetValue(viewName, out view);
+    }
 }

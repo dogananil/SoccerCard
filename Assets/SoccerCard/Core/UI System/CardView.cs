@@ -1,8 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -11,7 +11,20 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] private Image thumbnailImage;
     private bool isDraggingAvailable = false;
 
-    public void Setup(PlayerCard card, Sprite thumbnail,bool isDragAvailable=false)
+    private CanvasGroup canvasGroup;
+    private Transform originalParent;
+    private Vector3 originalPosition;
+
+    private void Awake()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+    }
+
+    public void Setup(PlayerCard card, Sprite thumbnail, bool isDragAvailable = false)
     {
         playerNameText.text = card.name;
         ratingText.text = card.rating.ToString();
@@ -21,17 +34,39 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!isDraggingAvailable)
-            return;
+        if (!isDraggingAvailable) return;
+        originalParent = transform.parent;
+        originalPosition = transform.localPosition;
+        canvasGroup.blocksRaycasts = false;
+
+        var uIManager = ServiceLocator.Get<UIManager>();
+        uIManager.GetView("SquadBuilderView", out var view);
+        transform.SetParent(view.transform); 
     }
-    public void OnDrag(PointerEventData eventData) 
+
+    public void OnDrag(PointerEventData eventData)
     {
-        if (!isDraggingAvailable)
-            return;
+        if (!isDraggingAvailable) return;
+        transform.position = eventData.position;
     }
-    public void OnEndDrag(PointerEventData eventData) 
+
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (!isDraggingAvailable)
-            return;
+        if (!isDraggingAvailable) return;
+        canvasGroup.blocksRaycasts = true;
+
+
+        var slot = eventData.pointerEnter?.GetComponent<SquadSlotView>();
+        if (slot != null && slot.IsEmpty)
+        {
+            transform.SetParent(slot.transform);
+            transform.localPosition = Vector3.zero;
+            slot.AssignCard(this);
+        }
+        else
+        {
+            transform.SetParent(originalParent);
+            transform.localPosition = originalPosition;
+        }
     }
 }
