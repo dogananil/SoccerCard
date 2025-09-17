@@ -19,7 +19,19 @@ public class CardView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         isDraggingAvailable = isDragAvailable;
     }
 
-    public void OnBeginDrag(PointerEventData eventData) {  }
-    public void OnDrag(PointerEventData eventData) { }
-    public void OnEndDrag(PointerEventData eventData) { }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (!isDraggingAvailable)
+            return;
+    }
+    public void OnDrag(PointerEventData eventData) 
+    {
+        if (!isDraggingAvailable)
+            return;
+    }
+    public void OnEndDrag(PointerEventData eventData) 
+    {
+        if (!isDraggingAvailable)
+            return;
+    }
 }
