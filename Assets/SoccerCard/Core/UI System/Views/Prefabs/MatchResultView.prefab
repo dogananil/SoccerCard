@@ -751,6 +751,7 @@ MonoBehaviour:
   VisitorSumTxt: {fileID: 8162317541569766397}
   ResultTxt: {fileID: 1252097221232832780}
   currentCardsContainer: {fileID: 7223241057968764488}
+  celebrationParticles: {fileID: 2161589863592020924}
 --- !u!1 &5123451688620110309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1323,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c13e8c37e7c1c8d4c83288adf23417b7, type: 3}
+--- !u!198 &2161589863592020924 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8104568518212184739, guid: c13e8c37e7c1c8d4c83288adf23417b7, type: 3}
+  m_PrefabInstance: {fileID: 7892194030134829343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3964825557292967975 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6522152830796777784, guid: c13e8c37e7c1c8d4c83288adf23417b7, type: 3}

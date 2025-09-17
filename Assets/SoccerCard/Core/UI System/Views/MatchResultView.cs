@@ -16,6 +16,9 @@ public class MatchResultView : View
     [SerializeField] private TextMeshProUGUI ResultTxt;
 
     [SerializeField] private GridLayoutGroup currentCardsContainer;
+
+    [SerializeField] private ParticleSystem celebrationParticles;
+
     private List<CardView> currentCardViews = new();
     private int localSum;
     private int visitorSum;
@@ -45,7 +48,10 @@ public class MatchResultView : View
     private void ShowResult()
     {
         if (localSum > visitorSum)
+        {
+            celebrationParticles.Play();
             ResultTxt.text = "<color=green>Victory!</color>";
+        }
         else if (localSum < visitorSum)
             ResultTxt.text = "<color=red>Lose!</color>";
         else
