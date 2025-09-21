@@ -687,6 +687,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PackOpenningAnim
       objectReference: {fileID: 0}
+    - target: {fileID: 8616937370917020621, guid: fcae7cbcb986f93469e60f829918bff8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616937370917020621, guid: fcae7cbcb986f93469e60f829918bff8, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9005b153d0d3c45af1f9cbab4277e3, type: 3}
+    - target: {fileID: 8616937370917020621, guid: fcae7cbcb986f93469e60f829918bff8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9005b153d0d3c45af1f9cbab4277e3, type: 3}
     - target: {fileID: 8616937370954739983, guid: fcae7cbcb986f93469e60f829918bff8, type: 3}
       propertyPath: m_SortingLayer
       value: 0
