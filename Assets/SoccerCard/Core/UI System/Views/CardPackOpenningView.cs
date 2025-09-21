@@ -11,14 +11,28 @@ public class CardPackOpenningView : View
     [SerializeField] private Button nextButton;
     private List<CardView> cardViews = new();
     private CardPackOpenAnimationConfig animationConfig;
+    [SerializeField] private Animator openPackAnimator;
+    [SerializeField] private Animator revealItemsAnimator;
     private List<PlayerCard> openedCards = new();
 
+    private void Awake()
+    {
+        GetComponent<Canvas>().worldCamera = Camera.main;
+    }
     public override void Show()
     {
         base.Show();
-        cardPackImage.gameObject.SetActive(true);
-        cardListContainer.gameObject.SetActive(false);
-        LoadConfigAndPlayAnimation().Forget();
+        //cardPackImage.gameObject.SetActive(true);//OLD ANIMATION code
+        //cardListContainer.gameObject.SetActive(false);//OLD ANIMATION code
+        PlayRevealAnim();
+        //LoadConfigAndPlayAnimation().Forget();//OLD ANIMATION
+    }
+
+    private void PlayRevealAnim()
+    {
+        LoadCards().Forget();
+        openPackAnimator.SetTrigger("OpenPack");
+        openPackAnimator.SetTrigger("RevealCard");
     }
 
     private async UniTask LoadConfigAndPlayAnimation()
